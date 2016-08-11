@@ -3,13 +3,21 @@
 #
 # Either create or build and then (optionally) serve content
 
+USER_ID=${LOCAL_USER_ID:-9001}
+
+echo "Starting with UID : $USER_ID"
+useradd --shell /bin/bash -d /opt -u $USER_ID -o -c "" -m user > /dev/null 2> /dev/null
+export HOME=/opt
+
+cd /opt
+chown -R user .
+
 if ! test -f /opt/conf.py
 then
-    cd /opt
-    runestone init
+    exec /usr/local/bin/gosu user /usr/local/bin/runestone init
 else
-    cd /opt
-    runestone build && runestone serve
+         /usr/local/bin/gosu user /usr/local/bin/runestone build
+    exec /usr/local/bin/gosu user /usr/local/bin/runestone serve
 fi
 
 
