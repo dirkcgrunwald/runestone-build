@@ -1,0 +1,18 @@
+FROM ubuntu
+MAINTAINER grunwald@cs.colorado.edu
+
+RUN apt-get update && apt-get install -y \
+    python-pip
+    
+RUN pip install runestone ; \
+    mkdir -p /opt /run
+
+VOLUME /opt
+WORKDIR /opt
+
+EXPOSE 8000
+
+ADD  imagefiles-build/entrypoint.sh /run
+
+CMD [ "/bin/bash", "-x", "/run/entrypoint.sh" ]
+
