@@ -1,4 +1,4 @@
 
 
 build:
-	docker build -t runestone-build -f Dockerfile-build .
+	docker build -t runestone-build -f Dockerfile .
