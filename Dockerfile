@@ -3,7 +3,7 @@ MAINTAINER grunwald@cs.colorado.edu
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
     ca-certificates \
-    curl \
+    curl git \
     python-pip
 
 RUN  gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
