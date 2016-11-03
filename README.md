@@ -1,8 +1,7 @@
 # Dockerized Runestone
 
-This repository contains two dockerfiles that produce containers to
-build and then serve a Runestone Interactive application and also
-to build the "Runestone Server" that is used to record student data.
+This repository contains a dockerfile that produces a container
+to build and then serve a Runestone Interactive application.
 
 ## Building Runestone Interactive sites
 
@@ -14,15 +13,17 @@ A single container, **runestone-build**, is used to produced by
 running `make build`. Once the container is build, you can create
 a new, empty runestone interactive application by:
 
-    mkdir newproj  
-    docker run -it --rm -v $(pwd)/newproj:/opt -p 8000:8000 runestone-build
+    % mkdir newproj  
+    % docker run --rm runestone-build > runestone-build
+    % sh runestone-build newproj
 
-This maps `./newproj` to the `/opt` directory and then starts the process
-of creating a new project. You'll be asked a number of questions, which is
-why you should use the `-it` option to run the container interactively.
+The first time you run the **runestone-build** container with no arguments,
+it will emit a shell script that you should then use to create and/or build
+your project. The shell script will determine your current user id and
+insure that the files in your new or rebuilt project are owned by you.
 
 The files in `./newproj` will be owned by a user other than you if you
-invoke the container this way. Instead, it's recommended you use the
+invoke the container directly. Instead, it's recommended you use the
 `runestone-build` script, which passes arguments to the the container
 to create a user with your UID and then run the container as that user.
 Thus, you would do:

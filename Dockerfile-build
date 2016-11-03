@@ -25,6 +25,7 @@ WORKDIR /opt
 EXPOSE 8000
 
 ADD  imagefiles-build/entrypoint.sh /run
+ADD  runestone-build /run
 
 CMD [ "/bin/bash", "/run/entrypoint.sh" ]
 
