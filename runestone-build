@@ -11,4 +11,4 @@ DIR=$1
 export LOCAL_USER_ID=$(id -u $USER)
 
 docker run -it --rm -e LOCAL_USER_ID=$LOCAL_USER_ID \
-       -v $(pwd)/$DIR:/opt -p 8000:8000 runestone-build
+       -v $(pwd)/$DIR:/opt -p 8000:8000 dirkcgrunwald/runestone-build
