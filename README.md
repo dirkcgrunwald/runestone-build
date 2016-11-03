@@ -14,7 +14,8 @@ running `make build`. Once the container is build, you can create
 a new, empty runestone interactive application by:
 
     % mkdir newproj  
-    % docker run --rm runestone-build > runestone-build
+    % docker pull dirkcgrunwald/runestone-build
+    % docker run --rm dirkcgrunwald/runestone-build > runestone-build
     % sh runestone-build newproj
 
 The first time you run the **runestone-build** container with no arguments,
