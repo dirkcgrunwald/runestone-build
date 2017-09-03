@@ -4,7 +4,8 @@ MAINTAINER grunwald@cs.colorado.edu
 RUN apt-get update && apt-get -y --no-install-recommends install \
     ca-certificates \
     curl git \
-    python-pip
+    python-pip \
+    build-essential python-dev
 
 RUN  gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
 RUN  curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.4/gosu-$(dpkg --print-architecture)" \
@@ -14,10 +15,16 @@ RUN  curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/do
      && rm /usr/local/bin/gosu.asc \
      && chmod +x /usr/local/bin/gosu
 
-RUN mkdir -p /opt /run && \
+RUN mkdir -p /build /opt /run && \
     pip install --upgrade pip && \
-    pip install setuptools && \
-    pip install runestone 
+    pip install setuptools
+
+RUN echo foo && git clone --recursive --single-branch -b pr-video-https-option \
+      https://github.com/dirkcgrunwald/RunestoneComponents.git \
+      /build/RunestoneComponents
+
+RUN    cd /build/RunestoneComponents && \
+    python setup.py install
 
 VOLUME /opt
 WORKDIR /opt
