@@ -19,8 +19,8 @@ RUN mkdir -p /build /opt /run && \
     pip install --upgrade pip && \
     pip install setuptools
 
-RUN echo foo && git clone --recursive --single-branch -b pr-video-https-option \
-      https://github.com/dirkcgrunwald/RunestoneComponents.git \
+RUN echo foo && git clone --recursive --single-branch -b master \
+      https://github.com/RunestoneInteractive/RunestoneComponents.git \
       /build/RunestoneComponents
 
 RUN    cd /build/RunestoneComponents && \
